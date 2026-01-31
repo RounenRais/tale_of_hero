@@ -19,12 +19,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className="min-h-screen min-w-screen flex flex-col items-center justify-center">
       <body
-       className="bg-amber-100 flex flex-col  justify-center h-screen w-[94vw]"
+       className="bg-amber-100 flex flex-col  justify-center items-center h-screen  "
       >
 
-        <div className=" relative bottom-40 right-[27vw] text-end "> <BackgroundMusic/>
+        <div className="  text-end relative -right-40 md:left-77 md-:left-7 bottom-40 md:bottom-41 flex items-start "> <BackgroundMusic/>
 </div>
 
 <div className=" ">

@@ -11,9 +11,6 @@ export default function BackgroundMusic() {
     const audio = new Audio("/audio/bg.mp3");
     audio.loop = true;
     audio.preload = "auto";
-
-    // Çoğu tarayıcıda autoplay için ya muted başlatman gerekir ya da user gesture gerekir.
-    // Senin isteğin: otomatik çalsın -> ilk açılışta muted başlatmak en garantisi.
     audio.muted = true; // güvenli autoplay
     audioRef.current = audio;
 
@@ -21,7 +18,6 @@ export default function BackgroundMusic() {
       try {
         await audio.play();
       } catch {
-        // engellendiyse problem değil; ilk user gesture'da tekrar deneyeceğiz
       }
     };
 
@@ -31,17 +27,13 @@ export default function BackgroundMusic() {
       try {
         await audio.play();
       } catch {}
-      // Bir kere yeter
       window.removeEventListener("pointerdown", resumeOnGesture);
       window.removeEventListener("keydown", resumeOnGesture);
       window.removeEventListener("touchstart", resumeOnGesture);
     };
-
-    // autoplay engellendiyse user gesture ile başlat
     window.addEventListener("pointerdown", resumeOnGesture, { once: true });
     window.addEventListener("touchstart", resumeOnGesture, { once: true });
     window.addEventListener("keydown", resumeOnGesture, { once: true });
-
     return () => {
       audio.pause();
       audioRef.current = null;
@@ -51,8 +43,6 @@ export default function BackgroundMusic() {
   const toggleMute = async () => {
     const a = audioRef.current;
     if (!a) return;
-
-    // Unmute'a basınca bazı tarayıcılar play'i tekrar ister
     if (a.paused) {
       try {
         await a.play();

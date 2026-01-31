@@ -15,7 +15,7 @@ export default function Start() {
       style={{ width: base * scale, height: base * scale }}
     />
     <div className=" flex flex-col items-center justify-center gap-5">
-      <Link href={"/screen"} className=" flex items-center flex-col justify-center z-1 cursor-pointer ">
+      <Link href={"/screen/S001"} className=" flex items-center flex-col justify-center z-1 cursor-pointer ">
         <Image
           src="/sprites/play.ico"
           width={80}
